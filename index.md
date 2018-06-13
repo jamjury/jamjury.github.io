@@ -345,6 +345,66 @@ class Comp_n_copy {
 ```
 > *Ілля Косолап*
 
+### 9
+***Створіть статичні методи, що дозволяють піднести до степеня, скласти, відняти
+або розділити 2 змінні, типу int. Організуйте обробку виключень, пов'язаних з діленням на 0.***
+
+```java
+public class Exam {
+    static int sum_2_vars(int one, int two) {
+        return one+two;
+    }
+
+    static int minus_2_vars(int one, int two) {
+        return one-two;
+    }
+
+    static int power_2_vars(int one, int two) {
+        return one^two;
+    }
+
+    static int divide_2_vars(int one, int two) {
+        int rez=0;
+        try {
+            rez = one / two;
+        }
+        catch (ArithmeticException e) {
+            System.out.println("Нельзя делить на ноль!");
+        }
+        return rez;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(sum_2_vars(5, 6));
+        System.out.println(minus_2_vars(5, 6));
+        System.out.println(power_2_vars(5, 6));
+        System.out.println(divide_2_vars(5, 0));
+    }
+}
+```
+> *Анна Кір'якіді*
+
+### 10
+***Створіть статичний метод, що дозволяє знайти суму всіх елементів діапазону чисел типу int.***
+
+```java
+public class Exam {
+    static int sum_all_elements(int arr[]) {
+        int sum=0;
+        for (int m: arr) {
+            sum+=m;
+        }
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        int arr[]={1, 2, 3, 4, 5, 6, 7, 8, 9};
+        System.out.println(sum_all_elements(arr));
+    }
+}
+```
+> *Анна Кір'якіді*
+
 ### 15
 ***Створіть тестовий приклад, що демонструє 2 способи створення потоків, – з
 використанням спадкоємства від класу Thread та через реалізацію інтерфейсу Runnable.***
