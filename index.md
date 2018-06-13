@@ -188,6 +188,36 @@ public class MyRunnable implements Runnable{
 ```
 > *Александр Бабин*
 
+### 3
+***Тестовий клас, що демонструє не менш 5 методів класу Arrays.***
+```java
+int arr[] = {3,0,4,5};
+Arrays.asList(arr);                                     // arr as List
+Arrays.binarySearch(arr,0);                             // binary search
+int arr1[] = Arrays.copyOf(arr, 5);                     // copy 5 values from arr to arr1
+Arrays.fill(arr1, 1);                                   // fill arr1 with 1
+Arrays.sort(arr1);                                      // sort
+Arrays.stream(arr1).forEach(System.out::println);       // return array as stream and print
+```
+> *Андрей Волков*
+
+### 4
+***Тестовий клас, що демонструє не менш 10 методів класу String.***
+```java
+String str = "hello";
+str.charAt(0);                 //returns 'h'
+str.compareTo("abc");          //compares strings
+str.equalsIgnoreCase("HELLO"); // 
+str.concat(" world");          //concating string
+str.indexOf("el");             //return index of substring
+str.length();                  // length
+str.replace('h', 'a');         //replaces all 'h' with 'a'
+str.substring(1, 3);           // substring that begins at 1 and extends to character at pos 3
+str.toCharArray();             //string to char[]
+str.toLowerCase();             //string to lower case
+```
+> *Андрей Волков*
+
 ### 15
 ***Створіть тестовий приклад, що демонструє 2 способи створення потоків, – з
 використанням спадкоємства від класу Thread та через реалізацію інтерфейсу Runnable.***
