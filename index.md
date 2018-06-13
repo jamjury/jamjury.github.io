@@ -405,6 +405,79 @@ public class Exam {
 ```
 > *Анна Кір'якіді*
 
+### 13
+***Створіть код, що відображає взаємини між наступними обьектами реального світу - Людина, Учень, Пенсіонер***
+
+```java
+class Human implements studying, Pensiya {
+    int age;
+    String name;
+    String studPlace;
+    String studHistory;
+    int studYears;
+    double money = 0;
+
+    public Human(int age, String name, double money, String studPlace, String studHistory){
+        this.age = age;
+        this.name = name;
+        this.studPlace = studPlace;
+        this.studHistory = studHistory;
+        this.money = money;
+    }
+
+    @Override
+    public void startStudy(String place, int years) {
+        studPlace = place;
+        studYears = years;
+    }
+
+    @Override
+    public void StopStudy() {
+        if (studYears==0) {
+            studHistory += studPlace;
+            studPlace = null;
+        }               
+    }
+
+    @Override
+    public void getPensiya() {
+        if (age>65)
+            money+=3500;
+    }
+}
+
+interface studying {
+    void startStudy(String place,int years);
+    void StopStudy();
+}
+
+interface Pensiya {
+    void getPensiya();
+}
+```
+> *Роман Паленко*
+
+### 14
+***Реалізуйте тестовий клас, що демонструє особливості передачі параметрів у метод класу (наприклад масиву типу int)***
+
+```java
+class Test {
+    static void Testarr(int arr[]) {
+        for (int a : arr) {
+            System.out.println(a);
+        }
+    }
+}
+
+public class Main {
+    public static void main(String args[]) {
+        int arr[] = {1, 2, 3, 4, 5};
+        Test.Testarr(arr);
+    }
+}
+```
+> *Роман Паленко*
+
 ### 15
 ***Створіть тестовий приклад, що демонструє 2 способи створення потоків, – з
 використанням спадкоємства від класу Thread та через реалізацію інтерфейсу Runnable.***
