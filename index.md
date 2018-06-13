@@ -1,5 +1,193 @@
 # Практичні завдання до іспиту
 
+### 1
+***Організувати заповнення будь-якого двовимірного масиву значеннями, що обчислюють по формулі (індекс масиву\*індекс масиву).***
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        final int ROW = 5;
+        final int COLUMN = 6;
+        Integer[][] arr = new Integer[ROW][COLUMN];
+
+        for(Integer[] tmpArr : fillArray(arr)) {
+            for(Integer value : tmpArr) {
+                System.out.print(value + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static <T extends Number> T[][] fillArray(T[][] arr) {
+        Number nmb;
+        for(int i = 0;i < arr.length;i++) {
+            for(int j = 0;j < arr[i].length; j++) {
+                nmb = i * j;
+                arr[i][j] = (T)nmb;
+            }
+        }
+        return arr;
+    }
+}
+```
+> *Александр Бабин. [repl.it](https://repl.it/@entrancescoder/IndexMultiplCode)*
+
+### 2
+***Тестовий приклад , що демонструє особливості використання модифікаторів доступу.***
+
+Модификатор доступа по умолчанию — означает, что мы явно не объявляем модификатор доступа в Java для класса, поля, метода и т.д.
+
+Модификатор `private` — методы, переменные и конструкторы, которые объявлены как `private` в Java могут быть доступны только в пределах самого объявленного класса.
+
+```java
+public class Logger {
+   private String format;
+   public String getFormat() {
+      return this.format;
+   }
+   public void setFormat(String format) {
+      this.format = format;
+   }
+}
+```
+
+Модификатор `public` — класс, метод, конструктор, интерфейс и т.д. объявленные как `public` могут быть доступны из любого другого класса. Поэтому поля, методы, блоки, объявленные внутри public класса могут быть доступны из любого класса, принадлежащего к "вселенной" Java.
+
+```java
+public static void main(String[] arguments) {
+   // ...
+}
+```
+
+Модификатор `protected` — переменные, методы и конструкторы, которые объявляются как `protected` в суперклассе, могут быть доступны только для подклассов в другом пакете или для любого класса в пакете класса `protected`.
+
+```java
+class AudioPlayer {
+   protected boolean openSpeaker(Speaker sp) {
+      // детали реализации
+   }
+}
+
+class StreamingAudioPlayer {
+   boolean openSpeaker(Speaker sp) {
+      // детали реализации
+   }
+}
+```
+
+Правила контроля доступа и наследования
+
+Следующие правила в Java применяются для унаследованных методов:
+
+1. Методы, объявленные как `public` в суперклассе, также должны быть `public` во всех подклассах.
+2. Методы, объявленные как `protected` в суперклассе, должны либо быть либо `protected`, либо `public` в подклассах; они не могут быть private.
+3. Методы, объявленные как `private` для всех не наследуются, так что нет никакого правила для них.
+
+Модификаторы класса, метода, переменной и потока, используемые не для доступа
+Java предоставляет ряд модификаторов не для доступа, а для реализации многих других функциональных возможностей:
+
+1. модификатор `static` применяется для создания методов и переменных класса;
+2. модификатор `final` используется для завершения реализации классов, методов и переменных;
+3. модификатор `abstract` необходим для создания абстрактных классов и методов;
+4. модификаторы `synchronized` и `volatile` используются в Java для потоков.
+
+
+Модификатор `final` — используется для завершения реализации классов, методов и переменных.
+```java
+public class Test{
+  final int value = 10;
+  // Ниже приведены примеры объявления констант:
+  public static final int BOXWIDTH = 6;
+  static final String TITLE = "Менеджер";
+  
+  public void changeValue(){
+     value = 12; //будет получена ошибка
+  }
+}
+```
+Основная цель в Java использования класса объявленного в качестве `final` заключается в предотвращении класс от быть подклассом. Если класс помечается как `final`, то ни один класс не может наследовать любую функцию из класса `final`.
+```java
+public final class Test {
+   // тело класса
+}
+```
+
+Модификатор `static` — применяется для создания методов и переменных класса.
+```java
+public class InstanceCounter {
+
+   private static int numInstances = 0;
+
+   protected static int getCount() {
+      return numInstances;
+   }
+
+   private static void addInstance() {
+      numInstances++;
+   }
+
+   InstanceCounter() {
+      InstanceCounter.addInstance(); 
+   }
+
+   public static void main(String[] arguments) {
+      System.out.println("Начиная с " +
+      InstanceCounter.getCount() + " экземпляра");
+      for (int i = 0; i < 500; ++i){
+         new InstanceCounter();
+      }
+      System.out.println("Создано " +
+      InstanceCounter.getCount() + " экземпляров");
+   }
+}
+```
+
+Модификатор `abstract` — используется для создания абстрактных классов и методов.
+
+```
+public abstract class SuperClass{
+    abstract void m(); //абстрактный метод
+}
+
+class SubClass extends SuperClass{
+     // реализует абстрактный метод
+      void m(){
+      .........
+      }
+}
+```
+
+Модификатор `synchronized` — используются в Java для потоков.
+Доступен только одним потоком одновременно
+
+```java
+public synchronized void showDetails(){
+.......
+}
+```
+
+Модификатор `volatile` — используются в Java для потоков.
+используется, чтобы позволить знать JVM, что поток доступа к переменной всегда должен объединять свою собственную копию переменной с главной копией в памяти
+
+```java
+public class MyRunnable implements Runnable{
+    private volatile boolean active;
+ 
+    public void run(){
+        active = true;
+        while (active){ // линия 1
+            // здесь какой-нибудь код
+        }
+    }
+    
+    public void stop(){
+        active = false; // линия 2
+    }
+}
+```
+> *Александр Бабин*
+
 ### 15
 ***Створіть тестовий приклад, що демонструє 2 способи створення потоків, – з
 використанням спадкоємства від класу Thread та через реалізацію інтерфейсу Runnable.***
