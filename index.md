@@ -293,6 +293,58 @@ class My {
 
 > *Дмитро Гапішко*
 
+### 7
+***Покажіть на тестовому прикладі особливості використання атрибутів интерфейсів
+змінних. Реалізуйте в коді лічильник створених об'єктів певного типу.***
+
+```java
+interface ICount {
+   public void Show();
+}
+
+static class Counter implements ICount {
+   public static int i;
+
+   public Counter(){
+       i++;
+   }
+
+   @Override
+   public void Show() {
+       System.out.println("wow");
+   }
+}
+public static void main(String[] args) {
+    Counter i = new Counter(), j = new Counter(), z = new Counter();
+    System.out.println(i.i);
+}
+```
+> *Ілля Косолап*
+
+### 8
+***Створіть клас із декількома різними типами атрибутів. У класі реалізуйте
+метод, що дозволяє одержати копію об'єкта даного типу й інший метод, що дозволяє
+зрівняти 2 об'єкти, даного типу.***
+
+```java
+class Comp_n_copy {
+    public Integer i = 5;
+    public Double j = 10.2;
+    public String z = new String("qwerty");
+
+    public void Copy(Comp_n_copy obj) {
+        this.i = obj.i;
+        this.j = obj.j;
+        this.z = obj.z;
+    }
+
+    public int Copmare(Comp_n_copy obj) {
+        return this.i - obj.i;
+    }
+}
+```
+> *Ілля Косолап*
+
 ### 15
 ***Створіть тестовий приклад, що демонструє 2 способи створення потоків, – з
 використанням спадкоємства від класу Thread та через реалізацію інтерфейсу Runnable.***
