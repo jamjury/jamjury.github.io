@@ -366,7 +366,7 @@ public class Exam {
     }
 
     static int power_2_vars(int one, int two) {
-        return one^two;
+        return (int) Math.pow(one, two); 
     }
 
     static int divide_2_vars(int one, int two) {
